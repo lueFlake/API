@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MessageService</name>
+    </assembly>
+    <members>
+        <member name="T:MessageService.InitializerController">
+            <summary>
+            Оператор инициализации.
+            </summary>
+        </member>
+        <member name="M:MessageService.InitializerController.Post">
+            <summary>
+            Запрос инициализации базы данных.
+            </summary>
+            <returns>Результат запроса.</returns>
+        </member>
+        <member name="T:MessageService.LettersController">
+            <summary>
+            Оператор для отправки/получения сообщений.
+            </summary>
+        </member>
+        <member name="M:MessageService.LettersController.Get(System.String,System.String)">
+            <summary>
+            Запрос на получение всех сообщений с отправителем и получателем.
+            </summary>
+            <param name="sender">Получатель (Опционально).</param>
+            <param name="receiver">Отправитель (Опционально).</param>
+            <returns>Результат запроса.</returns>
+        </member>
+        <member name="M:MessageService.LettersController.Post(MessageService.Letter)">
+            <summary>
+            Запрос на отправку сообщения.
+            </summary>
+            <param name="newLetter">Отправляемое сообщение.</param>
+            <returns>Результат запроса.</returns>
+        </member>
+        <member name="T:MessageService.UsersController">
+            <summary>
+            Оператор для добавления/получения пользователей.
+            </summary>
+        </member>
+        <member name="M:MessageService.UsersController.Get(System.Int32,System.Int32)">
+            <summary>
+            Запрос на получение пользователей в подмассиве.
+            </summary>
+            <param name="limit">Количество пользователей, которое необходимо вернуть.</param>
+            <param name="offset">Порядковый номер пользователя, начиная с которого необходимо получать информацию.</param>
+            <returns>Результат запроса.</returns>
+        </member>
+        <member name="M:MessageService.UsersController.Get">
+            <summary>
+            Запрос на получение всех пользователей.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MessageService.UsersController.Get(System.String)">
+            <summary>
+            Запрос на получение пользователя по почте.
+            </summary>
+            <param name="email">Почта.</param>
+            <returns>Результат запроса.</returns>
+        </member>
+        <member name="M:MessageService.UsersController.Post(MessageService.User)">
+            <summary>
+            Запрос на добавление нового пользователя.
+            </summary>
+            <param name="newUser">Новый пользователь.</param>
+            <returns>Результат запроса.</returns>
+        </member>
+        <member name="T:MessageService.DatabaseIOManager">
+            <summary>
+            Класс взаимодействия с псевдо-БД.
+            </summary>
+        </member>
+        <member name="M:MessageService.DatabaseIOManager.#ctor(System.String)">
+            <summary>
+            Инициализация класса взаимодействия с БД.
+            </summary>
+            <param name="path">Путь к БД.</param>
+        </member>
+        <member name="M:MessageService.DatabaseIOManager.TryWrite``1(``0)">
+            <summary>
+            Вывести данные в базу.
+            </summary>
+            <param name="obj">Выводимый объект.</param>
+            <returns>Результат запроса, в зависимости от наличия исключения.</returns>
+        </member>
+        <member name="M:MessageService.DatabaseIOManager.TryRead``1">
+            <summary>
+            Ввести данные в базу.
+            </summary>
+            <returns>Результат запроса, в зависимости от наличия исключения.</returns>
+        </member>
+        <member name="T:MessageService.Initializer">
+            <summary>
+            Класс инициализации случайных объектов.
+            </summary>
+        </member>
+        <member name="M:MessageService.Initializer.InitializeUsers(System.Int32,System.Int32)">
+            <summary>
+            Инициализация пользователей.
+            </summary>
+            <param name="maxUsersCount">Максимальное количество пользователей.</param>
+            <param name="maxStringLength">Максимальная длина стркои.</param>
+        </member>
+        <member name="M:MessageService.Initializer.InitializeLetters(System.Int32,System.Int32)">
+            <summary>
+            Инициализация сообщений.
+            </summary>
+            <param name="maxLettersCount">Максимальное количество сообщений.</param>
+            <param name="maxStringLength">Максимальная длина стркои.</param>
+        </member>
+        <member name="M:MessageService.Initializer.InitializeDatabase(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Инициализация БД.
+            </summary>
+            <param name="maxUsersCount">Максимальное количество пользователей.</param>
+            <param name="maxLettersCount">Максимальное количество сообщений.</param>
+            <param name="maxStringLength">Максимальная длина стркои.</param>
+        </member>
+        <member name="T:MessageService.RandomGenerator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MessageService.RandomGenerator.RandomLetterOrDigitString(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MessageService.Validator">
+            <summary>
+            Класс валидации объектов.
+            </summary>
+        </member>
+        <member name="M:MessageService.Validator.ValidateUser(MessageService.User)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MessageService.Validator.ValidateLetter(MessageService.Letter,System.Collections.Generic.IEnumerable{MessageService.User})">
+            <summary>
+            
+            </summary>
+            <param name="letter"></param>
+            <param name="users"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MessageService.Letter">
+            <summary>
+            Класс сообщения.
+            </summary>
+        </member>
+        <member name="M:MessageService.Letter.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Инициализацмя сообщения.
+            </summary>
+            <param name="subject">Тема сообщения.</param>
+            <param name="message">Текст сообщения.</param>
+            <param name="senderID">Идентификатор отправителя.</param>
+            <param name="receiverID">Идентификатор получателя.</param>
+        </member>
+        <member name="P:MessageService.Letter.Subject">
+            <summary>
+            Тема сообщения.
+            </summary>
+        </member>
+        <member name="P:MessageService.Letter.Message">
+            <summary>
+            Текст сообщения.
+            </summary>
+        </member>
+        <member name="P:MessageService.Letter.SenderID">
+            <summary>
+            Идентификатор отправителя.
+            </summary>
+        </member>
+        <member name="P:MessageService.Letter.ReceiverID">
+            <summary>
+            Идентификатор получателя.
+            </summary>
+        </member>
+        <member name="T:MessageService.User">
+            <summary>
+            Класс пользователя.
+            </summary>
+        </member>
+        <member name="M:MessageService.User.#ctor(System.String,System.String)">
+            <summary>
+            Инициализация пользователя.
+            </summary>
+            <param name="userName">Имя пользователя.</param>
+            <param name="email">Почта пользователя.</param>
+        </member>
+        <member name="P:MessageService.User.UserName">
+            <summary>
+            Имя пользователя.
+            </summary>
+        </member>
+        <member name="P:MessageService.User.Email">
+            <summary>
+            Почта пользователя.
+            </summary>
+        </member>
+        <member name="T:MessageService.Program">
+            <summary>
+            Основной класс программы.
+            </summary>
+        </member>
+        <member name="M:MessageService.Program.Main(System.String[])">
+            <summary>
+            Точка входа программы.
+            </summary>
+            <param name="args">Переменные среды.</param>
+        </member>
+        <member name="M:MessageService.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Создание сборщика хоста.
+            </summary>
+            <param name="args">Переменные среды.</param>
+            <returns>Сборщик хоста.</returns>
+        </member>
+        <member name="T:MessageService.Startup">
+            <summary>
+            This class gets called by the runtime. Use this class to add services to the container.
+            </summary>
+        </member>
+        <member name="M:MessageService.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:MessageService.Startup.Configuration">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+        </member>
+        <member name="M:MessageService.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:MessageService.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>
